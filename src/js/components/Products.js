@@ -2,16 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 
-import { fetchProducts } from '../actions/productActions'
+import { getProducts } from '../actions/productActions'
 
 @connect((store) => {
   return {
-    products: store.products.items
+    products: store.products
   };
 })
 export default class Products extends React.Component {
   componentWillMount() {
-    this.props.dispatch(fetchProducts())
+    this.props.dispatch(getProducts())
   }
 
   render() {

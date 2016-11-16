@@ -25,9 +25,10 @@ module.exports = {
         port: 9000,
         contentBase: __dirname,
         proxy: {
-            '/api**': {
-                target: 'http://localhost:8080/',
-                secure: false
+            '/api': {
+                target: 'http://localhost:8080',
+                secure: false,
+                // changeOrigin: true
             }
         }
     }

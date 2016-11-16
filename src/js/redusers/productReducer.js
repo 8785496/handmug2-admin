@@ -1,12 +1,11 @@
-export default function reducer (state = {items: []}, action) {
-    switch(action.type) {
-        case 'FETCH_PRODUCTS':
-            return state;
-            break;
-        case 'RECEIVE_PRODUCTS':
-            return Object.assign({}, state, {items: action.products});
-            break;
-        default:
-            return state;
-    }
+export default function reducer(state={}, action) {
+  switch (action.type) {
+    case 'GET_PRODUCT':
+      state = action.product;
+      break;
+    default:
+      return state;
+  }
+
+  return state;
 }
