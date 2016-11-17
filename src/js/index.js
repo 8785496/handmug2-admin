@@ -8,9 +8,9 @@ import Products from './components/Products'
 import Product from './components/Product'
 import store from './store'
 
-store.subscribe((data) =>
-  console.log('store change', store.getState())
-)
+// store.subscribe((data) =>
+//   console.log('store change', store.getState())
+// )
 
 ReactDOM.render(
   <Provider store={store}>

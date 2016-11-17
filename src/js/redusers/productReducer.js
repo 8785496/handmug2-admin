@@ -1,11 +1,8 @@
 export default function reducer(state={}, action) {
   switch (action.type) {
     case 'GET_PRODUCT':
-      state = action.product;
-      break;
+      return action.product;
     default:
-      return state;
+      return {picture:{}};
   }
-
-  return state;
 }

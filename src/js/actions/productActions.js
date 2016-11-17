@@ -6,6 +6,9 @@ export function getProducts(dispatch) {
       .then((response) => {
         dispatch({ type: 'GET_PRODUCTS', products: response.data })
       })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 }
 
@@ -20,6 +23,10 @@ export function getProduct(id, dispatch) {
 
 export function removeProduct(id, dispatch) {
   return (dispatch) => {
-    dispatch({ type: 'REMOVE_PRODUCT', id: id })
+    //dispatch({ type: 'REMOVE_PRODUCT', id: id })
+    return axios.delete(`/api/product/${id}`)
+      .then((response) => {
+        dispatch({ type: 'GET_PRODUCTS', products: response.data })
+      })
   }
 }

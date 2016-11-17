@@ -10,10 +10,14 @@ import { getProducts, removeProduct } from '../actions/productActions'
   };
 })
 export default class Products extends React.Component {
+  constructor(props) {
+    super(props);
+    this.remove = this.remove.bind(this);
+  }
 
   componentWillMount() {
     this.props.dispatch(getProducts())
-    console.log(this.props)
+    console.log(this)
   }
 
   remove(id) {
@@ -25,26 +29,29 @@ export default class Products extends React.Component {
       <td>{prod.id}</td>
       <td>
         <Link to={"/product/" + prod.id}>{prod.name}</Link>
-        <button className="btn btn-default" >Удалить</button>
+        <button className="btn btn-default" onClick={() => this.remove(prod.id)}>Удалить</button>
       </td>
       <td>{prod.price}</td>
     </tr>)
-    return <div>
-      <h2 className="page-header">Продукты</h2>
-      <div className="table-responsive">
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Наименование</th>
-              <th>Цена, р.</th>
-            </tr>
-          </thead>
-          <tbody>
-            {items}
-          </tbody>
-        </table>
+
+    return (
+      <div>
+        <h2 className="page-header">Продукты</h2>
+        <div className="table-responsive">
+          <table className="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Наименование</th>
+                <th>Цена, р.</th>
+              </tr>
+            </thead>
+            <tbody>
+              {items}
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
+    )
   }
 }
