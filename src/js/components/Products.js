@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 
-import { getProducts } from '../actions/productActions'
+import { getProducts, removeProduct } from '../actions/productActions'
 
 @connect((store) => {
   return {
@@ -10,14 +10,23 @@ import { getProducts } from '../actions/productActions'
   };
 })
 export default class Products extends React.Component {
+
   componentWillMount() {
     this.props.dispatch(getProducts())
+    console.log(this.props)
+  }
+
+  remove(id) {
+    this.props.dispatch(removeProduct(id))
   }
 
   render() {
     let items = this.props.products.map(prod => <tr key={prod.id}>
       <td>{prod.id}</td>
-      <td><Link to={"/product/" + prod.id}>{prod.name}</Link></td>
+      <td>
+        <Link to={"/product/" + prod.id}>{prod.name}</Link>
+        <button className="btn btn-default" >Удалить</button>
+      </td>
       <td>{prod.price}</td>
     </tr>)
     return <div>
