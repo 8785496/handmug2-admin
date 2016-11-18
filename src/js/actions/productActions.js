@@ -30,3 +30,10 @@ export function removeProduct(id, dispatch) {
       })
   }
 }
+
+export function changeProductName(name) {
+  return {
+    type: 'CHANGE_PRODUCT_NAME',
+    name: name
+  }
+}

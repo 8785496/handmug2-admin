@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import { getProduct } from '../actions/productActions'
+import { getProduct, changeProductName } from '../actions/productActions'
 import store from '../store'
 
 @connect((store) => {
@@ -10,6 +10,12 @@ import store from '../store'
   };
 })
 export default class Product extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.changeName = this.changeName.bind(this)
+  }
+  
   componentWillMount() {
     this.props.dispatch(getProduct(this.props.params.id));
   }
@@ -17,6 +23,14 @@ export default class Product extends React.Component {
   submit() {
     console.log('Submit')
     return false
+  }
+
+  changeName(e) {
+    this.props.dispatch(changeProductName(e.target.value))
+  }
+
+  changeDescription(e) {
+
   }
 
   render() {
@@ -39,12 +53,16 @@ export default class Product extends React.Component {
           
           <div className="form-group">
             <label htmlFor="name">Name</label>
-            <input type="text" className="form-control" id="name" placeholder="name" value={product.name} />
+            <input type="text" className="form-control" id="name" placeholder="name" 
+              value={this.props.product.name} 
+              onChange={this.changeName} />
           </div>
 
           <div className="form-group">
             <label htmlFor="description">Description</label>
-            <input type="text" className="form-control" id="description" value={product.description} />
+            <input type="text" className="form-control" id="description" 
+              value={this.props.product.description}
+              onChange={this.changeDescription} />
           </div>
 
           <div className="form-group">
