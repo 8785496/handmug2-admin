@@ -37,3 +37,32 @@ export function changeProductName(name) {
     name: name
   }
 }
+
+export function changeProductDescription(description) {
+  return {
+    type: 'CHANGE_PRODUCT_DESCRIPTION',
+    description: description
+  }
+}
+
+export function changeProductPrice(price) {
+  return {
+    type: 'CHANGE_PRODUCT_PRICE',
+    price: price
+  }
+}
+
+export function updateProduct(id, dispatch) {
+  return (dispatch) => {
+    return axios.put(`/api/product/${id}`, {
+      "name": "YYY",
+      "description": "YYY",
+      "price": 666,
+      "categoryId": 1,
+      "pictureId": 0
+    })
+      .then((response) => {
+        dispatch({ type: 'GET_PRODUCT', product: response.data })
+      })
+  }
+}

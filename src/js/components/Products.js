@@ -17,7 +17,7 @@ export default class Products extends React.Component {
 
   componentWillMount() {
     this.props.dispatch(getProducts())
-    console.log(this)
+    // console.log(this)
   }
 
   remove(id) {
